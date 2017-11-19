@@ -1,9 +1,0 @@
-|cnn
-a => comb.IN0
-a => comb.IN0
-b => comb.IN1
-b => comb.IN1
-sum <= comb.DB_MAX_OUTPUT_PORT_TYPE
-carry <= comb.DB_MAX_OUTPUT_PORT_TYPE
-
-
