@@ -5,20 +5,20 @@ cModel Technology
 Z0 dC:\altera\13.0
 vmult
 !i10b 1
-!s100 b=6E>Qj_I=ih[AGzzDZl03
-I4F7G?=aI:bj7NYE1zTPDV2
-Ve8iL5:mFG^CXm=>FlV5kD3
-dC:\Users\Jigar\Desktop\VLSI_Hardware_for_CNN
-w1511239858
-8C:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v
-FC:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v
+!s100 Fo8o44ID49dY921QfbgR22
+I?JH1TcB77@VGVJ1=Sd9<40
+VMM:4oIOT`@R^JdBP?4OJc1
+Z1 dC:\Users\Jigar\Desktop\VLSI_Hardware_for_CNN
+w1511240917
+Z2 8C:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v
+Z3 FC:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v
 L0 1
-OV;L;10.1d;51
+Z4 OV;L;10.1d;51
 r1
 !s85 0
 31
-!s108 1511240347.787000
+!s108 1511240917.344000
 !s107 C:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v|
-!s90 -reportprogress|300|-work|work|C:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v|
+Z5 !s90 -reportprogress|300|-work|work|C:/Users/Jigar/Desktop/VLSI_Hardware_for_CNN/multiplier.v|
 !s101 -O0
-o-work work -O0
+Z6 o-work work -O0
