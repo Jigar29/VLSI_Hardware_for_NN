@@ -20,7 +20,7 @@ module mult16(output[15:0] result, input clk, input wire[7:0] multiplicand, inpu
 		else begin 
 			if((next_state != s0) && (next_state != stop))
 			   temp <= {temp[2*BIT_WIDTH -2:0], 1'b0};
-			if(current_state == stop) begin
+			if(next_state == stop) begin
 				final_res = acc[2*BIT_WIDTH -1:0]; 
 			end
 			current_state <= next_state;
@@ -83,6 +83,12 @@ module mult16(output[15:0] result, input clk, input wire[7:0] multiplicand, inpu
 						temp1[2*BIT_WIDTH -2:BIT_WIDTH-1] = temp1[2*BIT_WIDTH -2:BIT_WIDTH-1] +1; 
 						temp1[2*BIT_WIDTH -1] = temp1[2*BIT_WIDTH -2];
 						acc = acc + temp1; 
+						
+						//Negative Saturation for the accumulator 
+						if(multiplicand[BIT_WIDTH -1] == 1'b1) begin 
+							if (acc[2*BIT_WIDTH -1] == 16'b1000000000000000) 
+								acc[2*BIT_WIDTH -1] = 16'b1000000000000001; 
+						end
 					end 
 					next_state = stop; 
 				 end  				 
