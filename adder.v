@@ -6,8 +6,7 @@ module adder16(output[15:0] result, output done, input clk, input reset, input[1
 	reg[BIT_WIDTH-1:0] final_sum;
 	reg ov, carry; 
 	
-	reg[3:0] pre_st = start, nxt_st = start; 
-	reg overflow, cout;
+	reg[3:0] pre_st = start, nxt_st = start;
 	
 	assign result = final_sum; 
 	assign done = (pre_st == stop)? 1'b1: 1'b0; 
@@ -21,6 +20,9 @@ module adder16(output[15:0] result, output done, input clk, input reset, input[1
 				temp_sum <= 0;
 				pre_st <= s0;
 				nxt_st <= s0; 
+				final_sum <=0; 
+				ov <= 0; 
+				carry <=0; 
 			end
 			else begin
 				if(nxt_st == stop)
