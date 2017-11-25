@@ -23,21 +23,16 @@ fetched_str1 = inp_file1.read();
 inp_str = ""; 
 out_str = "";
 for i in range(0, len(fetched_str1)):
-    if(fetched_str1[i] != ','):
+    if((fetched_str1[i] != ',') and (fetched_str1[i] != '\n')):
         inp_str = inp_str + fetched_str1[i]; 
 fh = open("result_theta1.txt","w")
 
 out_str = ''; 
 for z in range(0, 25):
-    out_str = out_str + '[';
     for i in range(0,401):
         for j in range(0, 8):
-            out_str = out_str + inp_str[(z*401*8) +(i)+j*401];
-        if(i != 400):    
-            out_str = out_str + ', ';
-    out_str = out_str + ']'; 
-    if(z != 24):
-        out_str = out_str + ',' + '\n'; 
+            out_str = out_str + inp_str[(z*401*8) +(i)+j*401]; 
+        out_str = out_str + '\n';
 
 fh.write(out_str);  
 fh.close(); 
@@ -48,7 +43,7 @@ fetched_str2 = inp_file2.read();
 inp_str = ""; 
 out_str = ""; 
 for i in range(0, len(fetched_str2)):
-    if(fetched_str2[i] != ','):
+    if((fetched_str2[i] != ',') and (fetched_str2[i] != '\n')):
         inp_str = inp_str + fetched_str2[i]; 
 fh = open("result_theta2.txt","w")
 
