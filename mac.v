@@ -7,12 +7,12 @@ module mac_400(output[15:0] result, output done, input clk, input reset, input w
   wire[7:0] mul_input, mult_input1, mult_input2;
   wire mult_done, adder_done, adder_reset, mult_reset; 
 
-  reg[7:0] inp[400:0]; 
+  reg[7:0] inp[400:0], theta[400:0]; 
   reg[15:0] temp_acc_reg = 0;
   reg[8:0] counter = 0; 
   reg[3:0] next_state = start, current_state = start;      // Be careful with the size of this register.
   reg acc_busy = 0;
-  reg[7:0] mult_inp_reg; 
+  reg[7:0] mult_inp_reg, mult_theta_reg; 
   integer i =0;
   integer file_inp; 
   
@@ -25,8 +25,17 @@ module mac_400(output[15:0] result, output done, input clk, input reset, input w
 	mult_inp_reg = inp[0]; 
   end 
   
+  initial begin
+	file_inp = $fopen("result_theta1.txt","r");
+	for(i = 0; (!$feof(file_inp)) && (i < no_of_inputs); i= i+1) begin
+		$fscanf(file_inp, "%b\n", theta[i]);
+	end	
+	$fclose(file_inp);
+	mult_theta_reg = theta[0]; 
+  end 
+  
   assign mult_input1 = mult_inp_reg;
-  assign mult_input2 = 8'b00000010;
+  assign mult_input2 = mult_theta_reg;
   assign adder_acc_input = temp_acc_reg;
   assign mult_reset = (acc_busy == 0)?1'b0:1'b1; 
   assign adder_reset = (mult_done == 1)?1'b0:1'b1; 
@@ -45,8 +54,10 @@ module mac_400(output[15:0] result, output done, input clk, input reset, input w
 		 if(counter != no_of_inputs)
 			#5 acc_busy = 1'b0;
 	end
-	if(counter != no_of_inputs) 
+	if(counter != no_of_inputs) begin 
 	  mult_inp_reg = inp[counter]; 
+	  mult_theta_reg = theta[counter]; 
+	end
   end 
 
 endmodule 
