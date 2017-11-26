@@ -1,5 +1,5 @@
 
-module mac_400(output[15:0] result, output done, input clk, input reset, input wire[8:0] no_of_inputs); 
+module mac_400(output[15:0] result, output done, input clk, input reset, input[4:0] neuron_no, input wire[8:0] no_of_inputs); 
   
   parameter start = 4'b0000, s0 = 4'b0001, s1 = 4'b0010, s2 = 4'b0011, s3 =4'b0100, s4 = 4'b0101, s5 = 4'b0110, s6 = 4'b0111, s7 = 4'b1000, s8 = 4'b1001, s9 = 4'b1010, s10 = 4'b1011, s11= 4'b1100, s12 = 4'b1101, s14 = 4'b1110, stop = 4'b1111;
  
@@ -18,7 +18,7 @@ module mac_400(output[15:0] result, output done, input clk, input reset, input w
   
   initial begin
 	file_inp = $fopen("result_inputs.txt","r");
-	for(i = 0; (!$feof(file_inp)); i= i+1) begin
+	for(i = 0; (!$feof(file_inp)&& (i < no_of_inputs)); i= i+1) begin
 		$fscanf(file_inp, "%b\n", inp[i]);
 	end	
 	$fclose(file_inp);
@@ -27,6 +27,7 @@ module mac_400(output[15:0] result, output done, input clk, input reset, input w
   
   initial begin
 	file_inp = $fopen("result_theta1.txt","r");
+	$fseek(file_inp, neuron_no*401, 0);
 	for(i = 0; (!$feof(file_inp)) && (i < no_of_inputs); i= i+1) begin
 		$fscanf(file_inp, "%b\n", theta[i]);
 	end	
